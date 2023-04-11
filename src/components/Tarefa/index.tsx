@@ -8,19 +8,14 @@ type Props = {
   descricao: string
 }
 
-const Tarefa = ({
-  titulo,
-  prioridade: categoria,
-  status,
-  descricao
-}: Props) => {
+const Tarefa = ({ titulo, prioridade, status, descricao }: Props) => {
   const [estaEditando, setEstaEditando] = useState(false)
 
   return (
     <S.Card>
       <S.Titulo>{titulo}</S.Titulo>
-      <S.Tag>{categoria}</S.Tag>
-      <S.Tag>{status}</S.Tag>
+      <S.Tag prioridade={prioridade}>{prioridade}</S.Tag>
+      <S.Tag status={status}>{status}</S.Tag>
       <S.Descricao value={descricao}></S.Descricao>
 
       <S.BarraAcoes>

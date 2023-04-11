@@ -38,6 +38,12 @@ const tarefas = [
     prioridade: 'importante',
     status: 'pendente',
     descricao: 'Iniciar Estudos Urgente'
+  },
+  {
+    titulo: 'Estudar HTML',
+    prioridade: 'importante',
+    status: 'concluída',
+    descricao: 'Iniciar Estudos Urgente'
   }
 ]
 
