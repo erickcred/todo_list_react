@@ -1,16 +1,34 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 
 import * as S from './styles'
 import * as enums from '../../utils/enums/ETarefa'
-import { remover } from '../../store/reducers/Tarefas'
+import { remover, editar } from '../../store/reducers/tarefas'
 import TarefaModel from '../../models/Tarefa'
 
 type Props = TarefaModel
 
-const Tarefa = ({ id, titulo, prioridade, status, descricao }: Props) => {
+const Tarefa = ({
+  id,
+  titulo,
+  prioridade,
+  status,
+  descricao: descricaoOriginal
+}: Props) => {
   const dispatch = useDispatch()
   const [estaEditando, setEstaEditando] = useState(false)
+  const [descricao, setDescricao] = useState('')
+
+  useEffect(() => {
+    if (descricaoOriginal.length > 0) {
+      setDescricao(descricaoOriginal)
+    }
+  }, [descricaoOriginal])
+
+  function cancelarEdicao() {
+    setEstaEditando(false)
+    setDescricao(descricaoOriginal)
+  }
 
   return (
     <S.Card>
@@ -21,13 +39,32 @@ const Tarefa = ({ id, titulo, prioridade, status, descricao }: Props) => {
       <S.Tag parametro="status" status={status}>
         {status}
       </S.Tag>
-      <S.Descricao value={descricao}></S.Descricao>
+      <S.Descricao
+        disabled={!estaEditando}
+        value={descricao}
+        onChange={(evento) => setDescricao(evento.target.value)}
+      />
 
       <S.BarraAcoes>
         {estaEditando ? (
           <>
-            <S.BotaoSalvar>Salvar</S.BotaoSalvar>
-            <S.BotaoRemoverCancelar onClick={() => setEstaEditando(false)}>
+            <S.BotaoSalvar
+              onClick={() => {
+                dispatch(
+                  editar({
+                    id,
+                    titulo,
+                    prioridade,
+                    status,
+                    descricao
+                  })
+                )
+                setEstaEditando(false)
+              }}
+            >
+              Salvar
+            </S.BotaoSalvar>
+            <S.BotaoRemoverCancelar onClick={() => cancelarEdicao()}>
               Cancelar
             </S.BotaoRemoverCancelar>
           </>
