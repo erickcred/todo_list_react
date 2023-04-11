@@ -1,48 +1,48 @@
 import Tarefa from '../../components/Tarefa'
-
 import { Container } from './styles'
+import * as enums from '../../utils/enums/ETarefa'
 
 const tarefas = [
   {
     titulo: 'Estudar React',
-    prioridade: 'importante',
-    status: 'pendente',
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar Java',
-    prioridade: 'urgente',
-    status: 'pendente',
+    prioridade: enums.Prioridade.URGENTE,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar SpringBoot',
-    prioridade: 'importante',
-    status: 'pendente',
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar SqlServer',
-    prioridade: 'importante',
-    status: 'pendente',
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar MySql',
-    prioridade: 'normal',
-    status: 'pendente',
+    prioridade: enums.Prioridade.NORMAL,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar Java API',
-    prioridade: 'importante',
-    status: 'pendente',
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.PENDENTE,
     descricao: 'Iniciar Estudos Urgente'
   },
   {
     titulo: 'Estudar HTML',
-    prioridade: 'importante',
-    status: 'concluída',
+    prioridade: enums.Prioridade.IMPORTANTE,
+    status: enums.Status.CONCLUIDA,
     descricao: 'Iniciar Estudos Urgente'
   }
 ]
