@@ -3,8 +3,8 @@ import * as S from './styles'
 
 type Props = {
   titulo: string
-  prioridade: 'importante' | 'urgente'
-  status: 'pendente' | 'conclúida' | 'urgente' | 'importante' | 'normal'
+  prioridade: string //'importante' | 'urgente' | 'normal'
+  status: string //'pendente' | 'conclúida'
   descricao: string
 }
 
