@@ -1,20 +1,20 @@
 import { useSelector } from 'react-redux/es/exports'
 
 import Tarefa from '../../components/Tarefa'
-import { Container } from './styles'
+import { Container, Resultado } from './styles'
 import { RootReducer } from '../../store'
 
 const ListaDeTarefas = () => {
-  const { tarefas } = useSelector((state: RootReducer) => state)
+  const { items } = useSelector((state: RootReducer) => state.tarefas)
   const { termo, criterio, valor } = useSelector(
     (state: RootReducer) => state.filtro
   )
 
   const filtraTarefas = () => {
-    let tarefasFiltradas = tarefas.items
+    let tarefasFiltradas = items
 
     if (termo !== undefined) {
-      tarefasFiltradas = tarefas.items.filter(
+      tarefasFiltradas = items.filter(
         (item) => item.titulo.toLowerCase().search(termo.toLowerCase()) >= 0
       )
 
@@ -34,14 +34,28 @@ const ListaDeTarefas = () => {
     }
   }
 
+  const exibeResultadoFiltragem = (quantidade: number) => {
+    let mensagem = ''
+    const complementacao =
+      termo !== undefined && termo.length > 0 ? `e "${termo}"` : ''
+
+    if (criterio === 'todas') {
+      mensagem = `${quantidade} tarefa(s) encontrada(s) como: todas ${complementacao}`
+    } else {
+      mensagem = `${quantidade} tarefa(s) encontrada(s) como: "${criterio}=${valor}" ${complementacao}`
+    }
+    return mensagem
+  }
+
+  const tarefas = filtraTarefas()
+  const mensagem = exibeResultadoFiltragem(tarefas.length)
+
   return (
     <Container>
-      <p>
-        2 tarefas marcadas como: &quot;{criterio}&ldquo; e &quot;{termo}&ldquo;
-      </p>
+      <Resultado>{mensagem}</Resultado>
 
       <ul>
-        {filtraTarefas().map((t) => (
+        {tarefas.map((t) => (
           <li key={t.id}>
             <Tarefa
               id={t.id}
