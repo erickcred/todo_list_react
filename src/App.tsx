@@ -9,8 +9,8 @@ function App() {
     <>
       <EstiloGlobal />
       <Container>
-        <BarraLateral></BarraLateral>
-        <ListaDeTarefas></ListaDeTarefas>
+        <BarraLateral />
+        <ListaDeTarefas />
       </Container>
     </>
   )
